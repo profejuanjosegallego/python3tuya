@@ -1,3 +1,6 @@
+from funciones import buscar_producto_por_id, eliminar_producto_por_id
+
+
 #Gestion el inventario de una tienda online administrada por el grupo TUYA
 #productos-->id, nombre, descripcion, fotografia, precioUnitario, cantidadBodega
 #Generar a tarves cli --> menu DE OPCIONES (REPITA INFINITAMENTE HASTA QUE EL USUARIO LO DETERMINE)
@@ -36,7 +39,7 @@ while opcionDelMenu != 0:
         producto={} #Diccionario
         
         print("Ingresando un producto a nuestra app: ")
-        producto["id"]=input("Digita el id del producto a registar: ")
+        producto["id"]=int(input("Digita el id del producto a registar: "))
         producto["nombre"]=input("Digita el nombre del producto a registar: ")
         producto["descripcion"]=input("Cuentanos algo del producro que quieras resaltar: ")
         producto["fotografia"]=input("Ingresa la URL de la fotografia del producto: ")
@@ -46,7 +49,7 @@ while opcionDelMenu != 0:
         productos.append(producto) #Lista que se carga con diccionarios
         print("Producto agregado con exito \n")
 
-    elif opcionDelMenu ==2:
+    elif opcionDelMenu ==2: #SI NO HAY NADA MENSAJE DE QUE NO HAY NADA
         
         print("Mostrando los productos en bodega: ")
         for productoSeleccionado in productos:
@@ -57,8 +60,18 @@ while opcionDelMenu != 0:
     elif opcionDelMenu ==3:
         pass
     elif opcionDelMenu ==4:
-        pass
+        print("Buscando un producto por ID")
+        idABuscar=int(input("Digita el id del producto que quieres buscar:  "))
+        productoEncontrado=buscar_producto_por_id(productos,idABuscar)
+        print(productoEncontrado)
+        #Si el producto encontrado es None devolver un mensaje de que el producto no es encontrado
+
     elif opcionDelMenu ==5:
-        pass
+        print("Eliminando un producto")
+        idABuscar=int(input("Digita el id del producto que quieres buscar:  "))
+        if eliminar_producto_por_id(productos,idABuscar):
+            print("Eliminamos con exito")
+        else:
+            print("opps hemos tenido problemas para eliminar el usuario indicado") 
     else:
         pass
